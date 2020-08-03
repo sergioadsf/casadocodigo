@@ -124,7 +124,6 @@ public class CompraCreateDTO {
 
 		if (Objects.nonNull(codigoCupom)) {
 			Cupom cupom = cupomRepository.findByCodigo(codigoCupom);
-			cupom.aindaValido();
 			compra.aplicar(cupom);
 		}
 

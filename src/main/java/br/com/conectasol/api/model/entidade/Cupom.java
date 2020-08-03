@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -26,7 +27,7 @@ public class Cupom {
 
 	private @NotBlank String codigo;
 	private @NotNull @Positive BigDecimal percentualDesconto;
-	private @Future LocalDate validade;
+	private @FutureOrPresent LocalDate validade;
 
 	@Deprecated
 	public Cupom() {
@@ -41,6 +42,10 @@ public class Cupom {
 
 	public BigDecimal getPercentualDesconto() {
 		return percentualDesconto;
+	}
+
+	public LocalDate getValidade() {
+		return validade;
 	}
 
 	@Override

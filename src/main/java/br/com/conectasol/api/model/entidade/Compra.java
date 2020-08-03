@@ -1,9 +1,9 @@
 package br.com.conectasol.api.model.entidade;
 
-import java.math.BigDecimal;
 import java.util.function.Function;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,8 +38,6 @@ public class Compra {
 
 	private @NotBlank String complemento;
 
-	private BigDecimal valorFinal;
-
 	@ManyToOne(optional = false)
 	private @NotNull Pais pais;
 
@@ -53,8 +51,8 @@ public class Compra {
 	@OneToOne(mappedBy = "compra", cascade = CascadeType.PERSIST)
 	private Pedido pedido;
 
-	@ManyToOne
-	private Cupom cupom;
+	@Embedded
+	private CupomAplicado cupom;
 
 	@Deprecated
 	public Compra() {
@@ -73,7 +71,6 @@ public class Compra {
 		this.telefone = telefone;
 		this.cep = cep;
 		this.pedido = fnCriaPedido.apply(this);
-		this.valorFinal = pedido.getTotal();
 	}
 
 	public void setEstado(@NotNull @Valid Estado estado) {
@@ -82,20 +79,15 @@ public class Compra {
 	}
 
 	public void aplicar(Cupom cupom) {
-		this.cupom = cupom;
-		this.valorFinal = valorFinal.subtract(cupom.getPercentualDesconto().multiply(BigDecimal.valueOf(0.1)));
-	}
-
-	public void setValorFinal(BigDecimal valorFinal) {
-		this.valorFinal = valorFinal;
+		cupom.aindaValido();
+		this.cupom = new CupomAplicado(cupom);
 	}
 
 	@Override
 	public String toString() {
 		return "Compra [id=" + id + ", email=" + email + ", nome=" + nome + ", sobrenome=" + sobrenome + ", cpfCnpj="
-				+ cpfCnpj + ", endereco=" + endereco + ", complemento=" + complemento + ", valorFinal=" + valorFinal
-				+ ", pais=" + pais + ", telefone=" + telefone + ", cep=" + cep + ", estado=" + estado + ", pedido="
-				+ pedido + ", cupom=" + cupom + "]";
+				+ cpfCnpj + ", endereco=" + endereco + ", complemento=" + complemento + ", pais=" + pais + ", telefone="
+				+ telefone + ", cep=" + cep + ", estado=" + estado + ", pedido=" + pedido + ", cupom=" + cupom + "]";
 	}
 
 }
