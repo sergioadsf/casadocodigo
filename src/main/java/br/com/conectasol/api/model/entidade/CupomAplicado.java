@@ -34,4 +34,8 @@ public class CupomAplicado {
 		this.validade = cupom.getValidade();
 	}
 
+	public BigDecimal getPercentualDesconto() {
+		return percentualDesconto;
+	}
+
 }

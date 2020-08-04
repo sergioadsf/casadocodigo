@@ -47,6 +47,18 @@ public class Pedido {
 		return totalPedido.doubleValue() == total.doubleValue();
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public Compra getCompra() {
+		return compra;
+	}
+
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+
 	public BigDecimal getTotal() {
 		return total;
 	}

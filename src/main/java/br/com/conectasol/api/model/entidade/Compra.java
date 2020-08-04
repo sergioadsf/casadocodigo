@@ -83,6 +83,58 @@ public class Compra {
 		this.cupom = new CupomAplicado(cupom);
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public String getCpfCnpj() {
+		return cpfCnpj;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public Pais getPais() {
+		return pais;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public CupomAplicado getCupom() {
+		return cupom;
+	}
+
 	@Override
 	public String toString() {
 		return "Compra [id=" + id + ", email=" + email + ", nome=" + nome + ", sobrenome=" + sobrenome + ", cpfCnpj="

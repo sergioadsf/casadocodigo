@@ -35,6 +35,18 @@ public class ItemPedido {
 		return preco.multiply(new BigDecimal(quantidade));
 	}
 
+	public Livro getLivro() {
+		return livro;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public BigDecimal getPreco() {
+		return preco;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
